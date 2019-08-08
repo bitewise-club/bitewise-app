@@ -4,6 +4,9 @@ import {ThemeProvider} from '@material-ui/styles';
 import {ButtonBase, Divider, Fade, Grid, makeStyles, Typography} from '@material-ui/core';
 import CameraPrompt from "../components/CameraPrompt";
 import '../static/default.css';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import "./index.module.css";
 
 const theme = createMuiTheme({
     palette: {
@@ -30,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 class Index extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             cameraAccess: false,
@@ -39,19 +42,36 @@ class Index extends React.Component {
 
     render() {
         return (
-            <ThemeProvider theme={theme}>
-                <div>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} alignContent="center">
-                            <Typography variant="h1" align="center" gutterBottom>
-                                BiteWise
-                            </Typography>
-                            <Divider/>
-                            <CameraPrompt/>
-                        </Grid>
-                    </Grid>
+            <div style={{
+                width: "100%",
+                height: "900px", // Don't know correct number
+                backgroundImage: "url(../static/backgroundCropped.jpg)",
+                backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed',
+                backgroundSize: 'cover'
+
+            }}>
+                <div class="banner">
+                    BiteWise
+                    <img class = "logo" height={"40px"} align={"center"} src= "../static/logo.png"></img>
                 </div>
-            </ThemeProvider>
+
+
+
+                {/*<ThemeProvider theme={theme}>*/}
+                {/*    <div>*/}
+                {/*        <Container container spacing={3}>*/}
+                {/*                <Typography variant="h1" align="center" gutterBottom>*/}
+                {/*                    BiteWise*/}
+                {/*                </Typography>*/}
+                {/*                <Button variant="contained" color="primary">*/}
+                {/*                    Hello World*/}
+                {/*                </Button>*/}
+                {/*                <CameraPrompt/>*/}
+                {/*        </Container>*/}
+                {/*    </div>*/}
+                {/*</ThemeProvider>*/}
+            </div>
         );
     }
 }
