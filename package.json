@@ -33,8 +33,10 @@
     "koa-session": "^5.12.2",
     "next": "^9.0.3",
     "react": "^16.8.6",
+    "react-circular-progressbar": "^2.0.1",
     "react-dom": "^16.8.6",
     "react-html5-camera-photo": "^1.4.3",
+    "react-spinner-material": "^1.1.2",
     "webpack": "^4.39.1"
   }
 }

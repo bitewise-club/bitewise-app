@@ -25,7 +25,7 @@ class FileUpload extends React.Component {
 
             <div className="file_input_div">
                 <div className="file_input" >
-                    <label onChange={this.handleSubmit}>
+                    <label onChange={this.handleSubmit }>
                         <div className="flexbox">
                         <div className="rectangle"><img src="../static/photo-camera.png"></img></div>
                         <input id="file_input_file" className="none" type="file" ref={this.fileInput}/>
