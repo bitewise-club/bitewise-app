@@ -40,7 +40,6 @@ class IngredientsView extends React.Component {
                     state.ingredients = ingredients;
                     return state;
                 });
-                priceProcess()
             });
         });
     }
