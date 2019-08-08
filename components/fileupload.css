@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+body {
+    display: flex;
+}
+
+.file_input_div {
+    margin: auto;
+    width: 250px;
+    height: 40px;
+}
+
+.file_input {
+    float: left;
+}
+
+#file_input_text_div {
+    width: 200px;
+    margin-top: -8px;
+    margin-left: 5px;
+}
+
+.none {
+    display: none;
+}

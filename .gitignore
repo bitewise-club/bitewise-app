@@ -2,4 +2,5 @@
 .next/
 node_modules/
 process.env
+.DS_Store
 
