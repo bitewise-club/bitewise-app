@@ -79,34 +79,37 @@ function CameraPrompt(){
     const classes = useStyles();
 
     return(
-        <ButtonBase
-            focusRipple
-            key="Open Camera"
-            className={classes.image}
-            focusVisibleClassName={classes.focusVisible}
-            style={{
-                width: '100%',
-            }}
-        >
-            <span
-                className={classes.imageSrc}
-                style={{
-                    backgroundImage: `url(${"https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_960_720.jpg"})`,
-                }}
-            />
-            <span className={classes.imageBackdrop}/>
-            <span className={classes.imageButton}>
-                <Typography
-                    component="span"
-                    variant="h2"
-                    color="inherit"
-                    className={classes.imageTitle}
-                >
-                  Open Camera
-                    <span className={classes.imageMarked}/>
-                </Typography>
-              </span>
-        </ButtonBase>
+        <input type="file">
+        {/*<ButtonBase*/}
+        {/*    focusRipple*/}
+        {/*    key="Open Camera"*/}
+        {/*    className={classes.image}*/}
+        {/*    focusVisibleClassName={classes.focusVisible}*/}
+        {/*    style={{*/}
+        {/*        width: '100%',*/}
+        {/*    }}*/}
+        {/*>*/}
+        {/*    /!*<input id="imageInput" type='file' hidden/>*!/*/}
+        {/*    <span*/}
+        {/*        className={classes.imageSrc}*/}
+        {/*        style={{*/}
+        {/*            backgroundImage: `url(${"https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_960_720.jpg"})`,*/}
+        {/*        }}*/}
+        {/*    />*/}
+        {/*    <span className={classes.imageBackdrop}/>*/}
+        {/*    <span className={classes.imageButton}>*/}
+        {/*        <Typography*/}
+        {/*            component="span"*/}
+        {/*            variant="h2"*/}
+        {/*            color="inherit"*/}
+        {/*            className={classes.imageTitle}*/}
+        {/*        >*/}
+        {/*          Open Camera*/}
+        {/*            <span className={classes.imageMarked}/>*/}
+        {/*        </Typography>*/}
+        {/*      </span>*/}
+        {/*</ButtonBase>*/}
+        </input>
     )
 }
 

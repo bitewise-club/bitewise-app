@@ -1,7 +1,7 @@
 import React from 'react';
 import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
-import {ButtonBase, Divider, Grid, makeStyles, Typography} from '@material-ui/core';
+import {ButtonBase, Divider, Fade, Grid, makeStyles, Typography} from '@material-ui/core';
 import CameraPrompt from "../components/CameraPrompt";
 import '../static/default.css';
 
@@ -30,6 +30,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 class Index extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            cameraAccess: false,
+        }
+    }
+
     render() {
         return (
             <ThemeProvider theme={theme}>

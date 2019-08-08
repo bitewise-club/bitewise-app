@@ -1,4 +1,3 @@
-//Takes the picture
 import React, { Component } from 'react';
 import Cam from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
