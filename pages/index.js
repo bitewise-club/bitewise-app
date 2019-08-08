@@ -3,12 +3,10 @@ import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import '../static/default.css';
 
-import Camera from '../components/camera.js';
+import IngredientsView from '../components/IngredientsView';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
-
-import {storeFile} from "../lib/FirebaseFileUpload";
 
 /* FIREBASE CONFIG */
 const firebaseConfig = {
@@ -25,10 +23,7 @@ const firebaseConfig = {
 try {
     firebase.initializeApp(firebaseConfig);
 } catch {
-    firebase.app().delete().then(() => {
-        console.log("Deleting and reinitializing app");
-        firebase.initializeApp(firebaseConfig);
-    })
+    // Do nothing
 }
 
 /* Authenticate development administrator. Delete this in production */
@@ -58,29 +53,12 @@ class Index extends React.Component{
 
     constructor(props) {
         super(props);
-
-        this.executeUpload = this.executeUpload.bind(this);
-
-        this.fileInput = React.createRef();
-    }
-
-    executeUpload() {
-        // Create storage ref
-        let file = this.fileInput.current.files[0];
-
-        let storageRef = firebase.storage().ref();
-        storeFile(storageRef, file, file.name).then(snapshot => {
-            console.log('upload completed');
-        });
     }
 
     render() {
         return (
             <ThemeProvider theme={theme}>
-                <Camera />
-                <h1>{this.host}</h1>
-                <input type="file" ref={this.fileInput} />
-                <button onClick={this.executeUpload}>Submit</button>
+                <IngredientsView app={firebase.app()} />
             </ThemeProvider>
         );
     }
