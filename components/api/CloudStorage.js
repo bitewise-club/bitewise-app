@@ -8,18 +8,25 @@ export class CloudUploader {
     }
 
     /**
-     * Stores the given File object
+     * Stores the given File object.
      * @param file The File object to store
-     * @param nameOnDatabase The name on the database
+     * @param remoteName The name of the file on the storage bucket
+     * @return {An|firebase.storage.UploadTask|IDBRequest<IDBValidKey>|Promise<void>}
      */
-    storeFile(file, nameOnDatabase) {
-        let ref = this.storageRef.child(nameOnDatabase);
+    storeFile(file, remoteName) {
+        let ref = this.storageRef.child(remoteName);
         return ref.put(file);
     }
 
-    fetchDownloadUrl(nameOnDatabase) {
-        let ref = this.storageRef.child(nameOnDatabase);
-        return ref.getDownloadURL()
+
+    /**
+     * Retrieves the object URL for the given remote file name on the storage bucket.
+     * @param remoteName The name of the file on the storage bucket
+     * @return {Promise<any> | A}
+     */
+    fetchDownloadUrl(remoteName) {
+        let ref = this.storageRef.child(remoteName);
+        return ref.getDownloadURL();
     }
 }
 
