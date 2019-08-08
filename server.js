@@ -1,5 +1,4 @@
 require("@babel/polyfill");
-require('dotenv').config();
 const Koa = require('koa');
 const next = require('next');
 const session = require('koa-session');
