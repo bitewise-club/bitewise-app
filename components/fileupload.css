@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-body {
-    display: flex;
-}
-
 .file_input_div {
     margin: auto;
     width: 250px;
@@ -22,4 +18,33 @@ body {
 
 .none {
     display: none;
+}
+.flexbox {
+    height: 50%;
+    width: 100%;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.item {
+    font-family: Snippet;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 219, 151, 0.81)
+}
+
+.rectangle {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.61);
+    height: 50%;
+    width: 100%;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.rectangle img {
+    width: 50%;
+    margin-top: 35%;
+    margin-bottom: 60px;
 }

@@ -3,6 +3,7 @@ import {Fade} from '@material-ui/core';
 
 import FileUpload from './FileUpload';
 import IngredientsList from './IngredientsList';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import imageProcess from './api/imageProcess';
 import CloudUploader from './api/CloudStorage';
@@ -15,7 +16,6 @@ class IngredientsView extends React.Component {
             uploader: new CloudUploader(props.app),
             ingredients: []
         };
-
         this.getIngredients = this.getIngredients.bind(this);
     }
 
@@ -45,13 +45,10 @@ class IngredientsView extends React.Component {
 
     render() {
         return (<div>
-            <Fade in={this.state.fileChosen}>
                 <FileUpload onSubmit={this.getIngredients} />
-            </Fade>
+                {/*<CircularProgress onSubmit={}/>*/}
             {/* TODO: Add loading icon while ingredients are being fetched */}
-            <Fade in={this.state.ingredients.length > 0}>
                 <IngredientsList ingredients={this.state.ingredients} />
-            </Fade>
         </div>);
     }
 }
