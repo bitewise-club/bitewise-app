@@ -6,6 +6,7 @@ import IngredientsList from './IngredientsList';
 
 import imageProcess from './api/imageProcess';
 import CloudUploader from './api/CloudStorage';
+import priceProcess from "./api/priceProcess";
 
 class IngredientsView extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class IngredientsView extends React.Component {
                     state.ingredients = ingredients;
                     return state;
                 });
+                priceProcess()
             });
         });
     }
