@@ -1,6 +1,6 @@
 import Clarifai from 'clarifai';
-async function imageProcess(imageURL)
-{
+
+async function imageProcess(imageURL) {
     const app = new Clarifai.App({
         apiKey: '36fc5d17e92e400ba1200a877dd3cdc0'
     });
