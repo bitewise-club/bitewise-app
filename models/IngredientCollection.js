@@ -2,7 +2,7 @@
 class IngredientCollection {
     constructor(ingredients, defaultThresh=0.9) {
         this.ingredients = ingredients.sort((a, b) => {
-            return b.getThreshold() - a.getThreshold();
+            return b.getConfidence() - a.getConfidence();
         });
 
         this.threshold = defaultThresh;
