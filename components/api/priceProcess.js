@@ -1,9 +1,11 @@
 import axios from "axios";
 
 async function priceProcess(ingredientList) {
+    let ingredientNames = ingredientList.map(ingredient => ingredient.getName());
+  
     let spoonKey = "da70221b4bfd4192922aa75c3f306071";
     let idResponse = (await axios.post("https://api.spoonacular.com/food/ingredients/map?apiKey=" + spoonKey, {
-        "ingredients": ingredientList,
+        "ingredients": ingredientNames,
         "servings": 1
     })).data;
 
@@ -17,10 +19,11 @@ async function priceProcess(ingredientList) {
 
     let productResponses = (await Promise.all(idRequests)).map(item => item.data);
     let prices = productResponses.map(productResponse => productResponse["price"]);
-    let priceEstimates = prices.reduce((soFar, current, idx) => {
-        soFar[ingredientList[idx]] = current
-    }, {});
 
-    return priceEstimates;
+    return ingredientList.map((ingredient, index) => {
+        ingredient.setPrice(prices[index]);
+        return ingredient;
+    });
 }
+
 export default priceProcess;

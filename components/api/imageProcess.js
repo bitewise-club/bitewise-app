@@ -1,6 +1,7 @@
 import Clarifai from 'clarifai';
-async function imageProcess(imageURL)
-{
+import Ingredient from '../../models/Ingredient';
+
+async function imageProcess(imageURL) {
     const app = new Clarifai.App({
         apiKey: '36fc5d17e92e400ba1200a877dd3cdc0'
     });
@@ -16,18 +17,11 @@ async function imageProcess(imageURL)
         let lst_componentsInfo = response.rawData.outputs[0].data.concepts;
         for (let dct_componentInfo of lst_componentsInfo)
         {
-            let s_name = dct_componentInfo["name"];
-            let s_value = dct_componentInfo["value"];
-            let s_id = dct_componentInfo["id"];
-
-            //use id to see if component is recipe or ingredient?
-            if (parseFloat(s_value) > threshold)
-            {
-                ingredients.push(s_name);
-            }
+            ingredients.push(dct_componentInfo);
         }
     }
-    return ingredients;
+
+    return ingredients.map(ingredient => new Ingredient(ingredient.name, ingredient.value));
 }
 
 export default imageProcess;
