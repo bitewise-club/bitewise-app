@@ -8,7 +8,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 
-import {storeFile} from "../lib/FirebaseFileUpload";
+import {CloudUploader} from "../components/api/CloudStorage";
 
 /* FIREBASE CONFIG */
 const firebaseConfig = {
@@ -62,16 +62,19 @@ class Index extends React.Component{
         this.executeUpload = this.executeUpload.bind(this);
 
         this.fileInput = React.createRef();
+
+        this.uploader = new CloudUploader(firebase.app());
     }
 
     executeUpload() {
         // Create storage ref
         let file = this.fileInput.current.files[0];
 
-        let storageRef = firebase.storage().ref();
-        storeFile(storageRef, file, file.name).then(snapshot => {
+        this.uploader.storeFile(file, file.name).then(snapshot => {
             console.log('upload completed');
         });
+
+        this.uploader.fetchDownloadUrl(file.name).then(url => console.log(url));
     }
 
     render() {
