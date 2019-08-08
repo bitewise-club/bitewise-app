@@ -1,7 +1,7 @@
 /**
  * Handles uploading to the cloud and getting download URLs.
  */
-export class CloudUploader {
+export default class CloudUploader {
     constructor(app) {
         this.app = app;
         this.storageRef = app.storage().ref();
