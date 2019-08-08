@@ -3,6 +3,8 @@ import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import '../static/default.css';
 
+import Camera from '../components/camera.js';
+
 const theme = createMuiTheme({
     palette:{
         primary:{
@@ -26,7 +28,7 @@ class Index extends React.Component{
     render() {
         return (
             <ThemeProvider theme={theme}>
-                <h1>{this.host}</h1>
+                <Camera />
             </ThemeProvider>
         );
     }

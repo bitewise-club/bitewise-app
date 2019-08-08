@@ -1,9 +1,9 @@
-import App, {Container} from 'next/app'
+import App, { Container } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
 
 export default class MyApp extends App {
-    static async getInitialProps ({ Component, ctx }) {
+    static async getInitialProps({ Component, ctx }) {
         let pageProps = {};
 
         if (Component.getInitialProps) {
@@ -13,16 +13,17 @@ export default class MyApp extends App {
         return { pageProps }
     }
 
-    render () {
+    render() {
         const { Component, pageProps } = this.props;
 
         return (
             <Container>
-            <Head>
-            <title>Bitewise</title>
-        </Head>
-        <Component {...pageProps} />
-        </Container>
-    )
+                <Head>
+                    <title>Bitewise</title>
+                </Head>
+                <Component {...pageProps} />
+               
+            </Container>
+        )
     }
 }
