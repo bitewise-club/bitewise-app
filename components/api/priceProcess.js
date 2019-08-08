@@ -1,9 +1,10 @@
 import $ from 'jQuery';
 import axios from "axios";
+
 async function priceProcess(ingredientList)
 {
     let ingredientNames = ingredientList.map(ingredient => ingredient.getName());
-
+  
     let spoonKey = "da70221b4bfd4192922aa75c3f306071";
     let data = {
         "ingredients": ingredientNames,
