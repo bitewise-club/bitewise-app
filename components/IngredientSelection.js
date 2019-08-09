@@ -19,7 +19,10 @@ function IngredientSelection(props) {
     props.ingredientCollection
         .getUnderlyingArray().forEach(ingredient => {
         ingredient.setOnProductNameDefined((ingredient) => {
-            ingredient.name = ingredient.productName;
+            ingredient.name = ingredient.productName
+                + (ingredient.getPrice() !== parseFloat('NaN')
+                ? ' ($' + (ingredient.getPrice() / 100).toString() + ')'
+                : '');
             setUpdates(updates + 1);
         });
     });
