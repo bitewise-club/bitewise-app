@@ -4,12 +4,17 @@ import {useStyles} from './MaterialUIStyles';
 import IngredientCheckbox from "./IngredientCheckbox";
 import './fileupload.css';
 
+import priceProcess from "./api/priceProcess";
+import PriceTotalView from "./PriceTotalView";
+
 
 function IngredientSelection(props) {
     const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
 
     let styles = useStyles();
-    console.log(props.ingredientCollection);
+
+    let listener = { onUpdate: () => {} };
+
     let items = props.ingredientCollection
         .getShown()
         .map((ingredient, index) => {
@@ -18,7 +23,10 @@ function IngredientSelection(props) {
                         <Card className={styles.card}>
                           <CardContent>
                             <CardActions>
-                                <IngredientCheckbox ingredient={ingredient} styles={styles}/>
+                                <IngredientCheckbox ingredient={ingredient} styles={styles}
+                                 onChange={(ingredient) => {
+                                                listener.onUpdate(ingredient);
+                                            }}/>
                                                             <Typography className={styles.title} color="textSecondary"
                                                                         gutterBottom>
                             <div className = "ingredientText">
@@ -57,6 +65,7 @@ function IngredientSelection(props) {
                 </div>
 
             </Grid>
+            <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} />
         </div>
     );
 }
