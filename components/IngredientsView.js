@@ -1,16 +1,11 @@
 import React from 'react';
 
 import FileUpload from './FileUpload';
-import IngredientsList from './IngredientsList';
 
 import IngredientCollection from '../models/IngredientCollection';
 
 import imageProcess from './api/imageProcess';
 import CloudUploader from './api/CloudStorage';
-import priceProcess from "./api/priceProcess";
-import IngredientSelection from "./IngredientSelection";
-
-import cookies from 'js-cookie';
 
 class IngredientsView extends React.Component {
     constructor(props) {
@@ -34,9 +29,9 @@ class IngredientsView extends React.Component {
         await this.state.uploader.storeFile(file, file.name)
             .then(() => console.log('upload completed'))
             .catch(error => {
-            console.error(error);
-            // TODO: Show the user this error if it occurs
-        });
+                console.error(error);
+                // TODO: Show the user this error if it occurs
+            });
 
         await this.state.uploader.fetchDownloadUrl(file.name).then(url => {
             console.log(url);

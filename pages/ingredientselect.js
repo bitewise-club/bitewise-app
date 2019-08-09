@@ -1,6 +1,5 @@
 import React from 'react';
 import {withRouter} from 'next/router';
-import cookies from "js-cookie";
 
 import Ingredient from "../models/Ingredient";
 import IngredientCollection from "../models/IngredientCollection";
