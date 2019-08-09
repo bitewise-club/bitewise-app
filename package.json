@@ -37,8 +37,6 @@
     "koa-session": "^5.12.2",
     "next": "^9.0.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1",
     "snyk": "^1.213.0",
     "webpack": "^4.39.1"
   },
