@@ -8,7 +8,7 @@ class Ingredient {
     }
 
     toggleSelect() {
-        this.selected ^= true;
+        this.selected = !this.selected;
     }
 
     getName() {
@@ -25,6 +25,10 @@ class Ingredient {
 
     setPrice(price) {
         this.price = price;
+    }
+
+    isSelected() {
+        return this.selected;
     }
 
     toString() {

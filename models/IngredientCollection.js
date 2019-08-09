@@ -7,7 +7,20 @@ class IngredientCollection {
 
         this.threshold = defaultThresh;
 
+        // Toggle selection on initial ingredients
+        for (let ingredient of this.ingredients) {
+            //use id to see if component is recipe or ingredient?
+            if (ingredient.getConfidence() > this.threshold) {
+                ingredient.toggleSelect();
+            }
+        }
+
         let numberToShow = this.thresholded().length;
+        this.numberToShow = numberToShow;
+    }
+
+    getSelectedBooleans() {
+        return this.ingredients.map(ingredient => ingredient.isSelected());
     }
 
     getAllSelected() {
@@ -24,6 +37,7 @@ class IngredientCollection {
     }
 
     getShown() {
+        console.log(this.numberToShow);
         return this.ingredients.slice(0, this.numberToShow);
     }
 
@@ -33,6 +47,10 @@ class IngredientCollection {
 
     showMore() {
         this.numberToShow += 3;
+    }
+
+    size() {
+        return this.ingredients.length;
     }
 
     thresholded()
@@ -48,3 +66,5 @@ class IngredientCollection {
         return out;
     }
 }
+
+export default IngredientCollection;

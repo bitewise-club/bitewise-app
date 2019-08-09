@@ -1,9 +1,11 @@
 import React from 'react';
+import {makeStyles} from '@material-ui/core';
 import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import '../static/default.css';
 
 import IngredientsView from '../components/IngredientsView';
+import IngredientSelection from '../components/IngredientSelection';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
@@ -59,6 +61,7 @@ class Index extends React.Component{
         return (
             <ThemeProvider theme={theme}>
                 <IngredientsView app={firebase.app()} />
+
             </ThemeProvider>
         );
     }

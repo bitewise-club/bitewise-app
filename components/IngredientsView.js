@@ -4,9 +4,12 @@ import {Fade} from '@material-ui/core';
 import FileUpload from './FileUpload';
 import IngredientsList from './IngredientsList';
 
+import IngredientCollection from '../models/IngredientCollection';
+
 import imageProcess from './api/imageProcess';
 import CloudUploader from './api/CloudStorage';
 import priceProcess from "./api/priceProcess";
+import IngredientSelection from "./IngredientSelection";
 
 class IngredientsView extends React.Component {
     constructor(props) {
@@ -14,13 +17,15 @@ class IngredientsView extends React.Component {
         this.state = {
             fileChosen: false,
             uploader: new CloudUploader(props.app),
-            ingredients: []
+            ingredients: new IngredientCollection([])
         };
 
         this.getIngredients = this.getIngredients.bind(this);
     }
 
     async getIngredients(file) {
+        console.log('starting upload');
+
         this.setState((state, props) => {
             state.fileChosen = true;
             return state;
@@ -46,13 +51,10 @@ class IngredientsView extends React.Component {
 
     render() {
         return (<div>
-            <Fade in={this.state.fileChosen}>
                 <FileUpload onSubmit={this.getIngredients} />
-            </Fade>
             {/* TODO: Add loading icon while ingredients are being fetched */}
-            <Fade in={this.state.ingredients.length > 0}>
-                <IngredientsList ingredients={this.state.ingredients} />
-            </Fade>
+                {/*<IngredientsList ingredients={this.state.ingredients} />*/}
+            <IngredientSelection ingredientCollection={this.state.ingredients} />
         </div>);
     }
 }
