@@ -1,20 +1,13 @@
 import React from 'react';
 import {createMuiTheme} from '@material-ui/core/styles';
-import {ThemeProvider} from '@material-ui/styles';
-import {ButtonBase, Divider, Fade, Grid, makeStyles, Typography} from '@material-ui/core';
-import CameraPrompt from "../components/CameraPrompt";
+import {makeStyles} from '@material-ui/core';
 import '../static/default.css';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 import "./index.module.css";
-
-import IngredientsView from '../components/IngredientsView';
-import IngredientSelection from '../components/IngredientSelection';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
+import MainPage from './main';
 
-import {BrowserRouter, Route} from 'react-router-dom'
 
 /* FIREBASE CONFIG */
 const firebaseConfig = {
@@ -35,7 +28,7 @@ try {
 }
 
 /* Authenticate development administrator. Delete this in production */
-firebase.auth().signInWithEmailAndPassword('s.xifaras999@gmail.com', 'bitewiseisgonnawin').catch(function(error) {
+firebase.auth().signInWithEmailAndPassword('s.xifaras999@gmail.com', 'bitewiseisgonnawin').catch(function (error) {
     console.error("Error creating user", error);
 });
 
@@ -63,9 +56,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-import MainPage from './main';
-import IngredientSelectPage from "./ingredientselect";
-
 class Index extends React.Component {
     constructor(props) {
         super(props);
@@ -85,7 +75,7 @@ class Index extends React.Component {
 
         }}>
 
-            <MainPage app={firebase.app()} />;
+            <MainPage app={firebase.app()}/>;
 
         </div>);
     }
