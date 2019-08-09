@@ -10,10 +10,19 @@ import PriceTotalView from "./PriceTotalView";
 
 function IngredientSelection(props) {
     const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
+    const [updates, setUpdates] = React.useState(0);
 
     let styles = useStyles();
 
     let listener = { onUpdate: () => {} };
+
+    props.ingredientCollection
+        .getUnderlyingArray().forEach(ingredient => {
+        ingredient.setOnProductNameDefined((ingredient) => {
+            ingredient.name = ingredient.productName;
+            setUpdates(updates + 1);
+        });
+    });
 
     let items = props.ingredientCollection
         .getShown()
@@ -60,12 +69,11 @@ function IngredientSelection(props) {
                         setCount(props.ingredientCollection.visibleSize());
                     }}>Show More
                     </button>
-                    <h1 className="totalCost">Total Cost: $21.48</h1>
+                    <h1 className="totalCost">Total Cost: <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} /></h1>
                 </Grid>
                 </div>
 
             </Grid>
-            <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} />
         </div>
     );
 }
