@@ -10,7 +10,10 @@
     height: 40px;
     animation: spin 2s linear infinite;
     margin-top: 400px;
-    margin-left: 150px;
+    /*margin-left: 150px;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes spin {
