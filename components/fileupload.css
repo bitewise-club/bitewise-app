@@ -25,7 +25,23 @@
     margin-top: 80px;
     text-align: center;
 }
+.flexboxSelection {
+    height: 50%;
+    width: 100%;
+    text-align: left;
+}
 
+.ingredientHeader {
+    font-family: Snippet;
+    text-align:  center;
+}
+
+.totalCost {
+    margin-left: 95px;
+    font-family: Arial;
+    color: #68771A;
+
+}
 .item {
     font-family: Snippet;
     border-radius: 5px;
@@ -47,4 +63,15 @@
     width: 50%;
     margin-top: 35%;
     margin-bottom: 60px;
+}
+
+.ingredientText{
+    font-size: 25px;
+}
+.cardFix {
+    /*margin-left:-250px;*/
+}
+.showMore {
+    margin-top: 30px;
+    margin-left:20px;
 }
