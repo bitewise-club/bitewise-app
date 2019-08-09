@@ -1,0 +1,16 @@
+@font-face {
+    font-family: Snippet;
+    src: url("/static/Snippet.otf");
+}
+
+.banner {
+    font-family: Snippet;
+    background-color: #68771A;
+    text-align: center;
+    font-size: 40px;
+    color: #FFDB97;
+}
+
+.logo {
+    margin-left: 30px;
+}

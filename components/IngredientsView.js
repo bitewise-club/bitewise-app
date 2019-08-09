@@ -1,5 +1,4 @@
 import React from 'react';
-import {Fade} from '@material-ui/core';
 
 import FileUpload from './FileUpload';
 import IngredientsList from './IngredientsList';
@@ -11,6 +10,8 @@ import CloudUploader from './api/CloudStorage';
 import priceProcess from "./api/priceProcess";
 import IngredientSelection from "./IngredientSelection";
 
+import cookies from 'js-cookie';
+
 class IngredientsView extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +20,6 @@ class IngredientsView extends React.Component {
             uploader: new CloudUploader(props.app),
             ingredients: new IngredientCollection([])
         };
-
         this.getIngredients = this.getIngredients.bind(this);
     }
 
@@ -45,17 +45,36 @@ class IngredientsView extends React.Component {
                     state.ingredients = ingredients;
                     return state;
                 });
+
+                // this.props.setFunc(ingredients);
+
+                // redirect
+                window.location = '/ingredientselect?ingredients='
+                    + encodeURIComponent(JSON.stringify(ingredients.getUnderlyingArray())); // TODO: Add url params
             });
         });
     }
 
     render() {
-        return (<div>
-            <FileUpload onSubmit={this.getIngredients} />
-            {/* TODO: Add loading icon while ingredients are being fetched */}
-            {/*<IngredientsList ingredients={this.state.ingredients} />*/}
-            <IngredientSelection ingredientCollection={this.state.ingredients} />
-        </div>);
+        // return (<div>
+        //     <FileUpload onSubmit={this.getIngredients} />
+        //     {/* TODO: Add loading icon while ingredients are being fetched */}
+        //     {/*<IngredientsList ingredients={this.state.ingredients} />*/}
+        //     <IngredientSelection ingredientCollection={this.state.ingredients} />
+        // </div>);
+
+        if (!this.state.fileChosen) {
+            return (<div>
+                <FileUpload onSubmit={this.getIngredients}/>
+            </div>);
+        } else {
+            return (
+                <div>
+                    <FileUpload onSubmit={this.getIngredients}/>
+                    <div className="loader"></div>
+                </div>
+            );
+        }
     }
 }
 

@@ -29,7 +29,7 @@ class MyDocument extends Document {
         return (
             <Html>
             <Head>
-            <link rel="shortcut icon" type="image/png" href=""/>
+            <link rel="shortcut icon" type="image/png" href="/static/logo.png"/>
             <style>{`body { margin: 0 } /* custom! */`}</style>
         <meta name="viewport"content="width=device-width, initial-scale=1.0" />
             </Head>

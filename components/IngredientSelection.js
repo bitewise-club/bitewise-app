@@ -2,14 +2,16 @@ import React from 'react';
 import {Grid, Paper, Checkbox, Card, Typography, makeStyles} from '@material-ui/core';
 import {useStyles} from './MaterialUIStyles';
 import IngredientCheckbox from "./IngredientCheckbox";
+import IngredientCollection from "../models/IngredientCollection";
+import Ingredient from "../models/Ingredient";
+
 
 function IngredientSelection(props) {
     const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
 
     let styles = useStyles();
-
-    let items = props
-        .ingredientCollection
+    console.log(props.ingredientCollection);
+    let items = props.ingredientCollection
         .getShown()
         .map((ingredient, index) => {
             return (

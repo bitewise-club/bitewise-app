@@ -4,8 +4,7 @@ import {Card, Checkbox, Grid, Typography} from "@material-ui/core";
 class IngredientCheckbox extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state ={
+        this.state = {
             checked: props.ingredient.isSelected()
         };
 

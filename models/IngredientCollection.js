@@ -11,7 +11,7 @@ class IngredientCollection {
         for (let ingredient of this.ingredients) {
             //use id to see if component is recipe or ingredient?
             if (ingredient.getConfidence() > this.threshold) {
-                ingredient.toggleSelect();
+                ingredient.selected = true;
             }
         }
 
@@ -68,6 +68,10 @@ class IngredientCollection {
         }
 
         return out;
+    }
+
+    getUnderlyingArray() {
+        return this.ingredients;
     }
 }
 
