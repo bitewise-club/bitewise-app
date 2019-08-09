@@ -27,9 +27,9 @@ class IngredientsView extends React.Component {
         await this.state.uploader.storeFile(file, file.name)
             .then(() => console.log('upload completed'))
             .catch(error => {
-                console.error(error);
-                // TODO: Show the user this error if it occurs
-            });
+            console.error(error);
+            // TODO: Show the user this error if it occurs
+        });
 
         await this.state.uploader.fetchDownloadUrl(file.name).then(url => {
             console.log(url);
@@ -45,19 +45,20 @@ class IngredientsView extends React.Component {
     render() {
         if (!this.state.fileChosen) {
             return (<div>
-                <FileUpload onSubmit={this.getIngredients}/>
+                <FileUpload onSubmit={this.getIngredients} />
                 {/* TODO: Add loading icon while ingredients are being fetched */}
-                <IngredientsList ingredients={this.state.ingredients}/>
+                    <IngredientsList ingredients={this.state.ingredients} />
             </div>);
-        } else {
-            return (
+            }
+        else {
+            return(
                 <div>
-                    <FileUpload onSubmit={this.getIngredients}/>
-                    <div className="loader"></div>
-                    <IngredientsList ingredients={this.state.ingredients}/>
+                <FileUpload onSubmit={this.getIngredients} />
+                <div className="loader"></div><IngredientsList ingredients={this.state.ingredients} />
+
                 </div>
             );
-        }
+    }
     }
 }
 
