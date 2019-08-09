@@ -34,8 +34,19 @@ class Ingredient {
         return this.selected;
     }
 
+    setProductName(productName) {
+        this.productName = productName;
+        if (this.onProductNameDefined) {
+            this.onProductNameDefined(this);
+        }
+    }
+
     updateWithProductInformation(productObject) {
 
+    }
+
+    setOnProductNameDefined(func) {
+        this.onProductNameDefined = func;
     }
 
     toString() {

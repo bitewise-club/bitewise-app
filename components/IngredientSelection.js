@@ -8,6 +8,7 @@ import PriceTotalView from "./PriceTotalView";
 
 function IngredientSelection(props) {
     const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
+    const [updates, setUpdates] = React.useState(0);
 
     let styles = useStyles();
 
@@ -15,6 +16,17 @@ function IngredientSelection(props) {
         onUpdate: () => {
         }
     };
+
+    props.ingredientCollection
+        .getUnderlyingArray().forEach(ingredient => {
+        ingredient.setOnProductNameDefined((ingredient) => {
+            ingredient.name = ingredient.productName
+                + (ingredient.getPrice() !== parseFloat('NaN')
+                ? ' ($' + (ingredient.getPrice() / 100).toString() + ')'
+                : '');
+            setUpdates(updates + 1);
+        });
+    });
 
     let items = props.ingredientCollection
         .getShown()
@@ -48,18 +60,16 @@ function IngredientSelection(props) {
                     {items}
                 </div>
                 <div className="showMore">
-                    <Grid item xs={12} lg={6}>
-                        <button onClick={() => {
-                            props.ingredientCollection.showMore();
-                            setCount(props.ingredientCollection.visibleSize());
-                        }}>Show More
-                        </button>
-                        <h1 className="totalCost">Total Cost: $21.48</h1>
-                    </Grid>
+                <Grid item xs={12} lg={6}>
+                    <button onClick={() => {
+                        props.ingredientCollection.showMore();
+                        setCount(props.ingredientCollection.visibleSize());
+                    }}>Show More
+                    </button>
+                    <h1 className="totalCost">Total Cost: <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} /></h1>
+                </Grid>
                 </div>
-
             </Grid>
-            <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener}/>
         </div>
     );
 }
