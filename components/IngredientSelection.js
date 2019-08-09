@@ -4,6 +4,8 @@ import {useStyles} from './MaterialUIStyles';
 import IngredientCheckbox from "./IngredientCheckbox";
 
 function IngredientSelection(props) {
+    const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
+
     let styles = useStyles();
 
     let items = props
@@ -17,8 +19,14 @@ function IngredientSelection(props) {
         });
 
     return (
-        <Grid container spacing={3} xs={12} className={styles.grid}>
+        <Grid container spacing={3} className={styles.grid}>
             {items}
+            <Grid item xs={12} lg={6}>
+                <button onClick={() => {
+                    props.ingredientCollection.showMore();
+                    setCount(props.ingredientCollection.visibleSize());
+                }}>Show More</button>
+            </Grid>
         </Grid>
     );
 }

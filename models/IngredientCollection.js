@@ -53,6 +53,10 @@ class IngredientCollection {
         return this.ingredients.length;
     }
 
+    visibleSize() {
+        return this.numberToShow;
+    }
+
     thresholded()
     {
         let out = [];
