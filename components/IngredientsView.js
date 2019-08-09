@@ -1,11 +1,9 @@
 import React from 'react';
-
 import FileUpload from './FileUpload';
-
 import IngredientCollection from '../models/IngredientCollection';
-
 import imageProcess from './api/imageProcess';
 import CloudUploader from './api/CloudStorage';
+import '../static/default.css';
 
 class IngredientsView extends React.Component {
     constructor(props) {
@@ -30,7 +28,6 @@ class IngredientsView extends React.Component {
             .then(() => console.log('upload completed'))
             .catch(error => {
                 console.error(error);
-                // TODO: Show the user this error if it occurs
             });
 
         await this.state.uploader.fetchDownloadUrl(file.name).then(url => {
@@ -40,10 +37,6 @@ class IngredientsView extends React.Component {
                     state.ingredients = ingredients;
                     return state;
                 });
-
-                // this.props.setFunc(ingredients);
-
-                // redirect
                 window.location = '/ingredientselect?ingredients='
                     + encodeURIComponent(JSON.stringify(ingredients.getUnderlyingArray())); // TODO: Add url params
             });
@@ -51,23 +44,16 @@ class IngredientsView extends React.Component {
     }
 
     render() {
-        // return (<div>
-        //     <FileUpload onSubmit={this.getIngredients} />
-        //     {/* TODO: Add loading icon while ingredients are being fetched */}
-        //     {/*<IngredientsList ingredients={this.state.ingredients} />*/}
-        //     <IngredientSelection ingredientCollection={this.state.ingredients} />
-        // </div>);
-
         if (!this.state.fileChosen) {
             return (<div>
                 <FileUpload onSubmit={this.getIngredients}/>
             </div>);
         } else {
             return (
-                <div>
+                <span>
                     <FileUpload onSubmit={this.getIngredients}/>
-                    <div className="loader"></div>
-                </div>
+                    <div className="loader"/>
+                </span>
             );
         }
     }
