@@ -1,13 +1,17 @@
 import React from 'react';
-import CloudUploader from "./api/CloudStorage";
-class IngredientsView extends React.Component {
+import IngredientCollection from "../models/IngredientCollection.js";
+import Ingredient from "../models/Ingredient.js";
+class MealPrepEstimation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            fileChosen: false,
-            uploader: new CloudUploader(props.app),
-            ingredients: []
-        };
+    }
+    //get ingredient collection
+    ingredientCollection = [];
+    render() {
+        return (
+            <div>
+                <h1></h1>
+            </div>);
     }
 }
-export default MealPrepEstimator;
+export default MealPrepEstimation;
