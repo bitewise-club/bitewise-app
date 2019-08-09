@@ -22,8 +22,7 @@ class IngredientCheckbox extends React.Component {
 
     render() {
         return (
-            <Grid item xs={12} lg={6} className={this.props.styles.grid}>
-                {/*<Card className={this.props.styles.card}>*/}
+            <Grid item xs={12} lg={6} className={this.props.styles.grid} component="div">
                 <div className="cardFix">
                     <Checkbox
                         checked={this.state.checked}
@@ -37,7 +36,6 @@ class IngredientCheckbox extends React.Component {
                         }}
                     />
                 </div>
-                {/*</Card>*/}
             </Grid>
         );
     }

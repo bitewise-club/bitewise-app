@@ -1,11 +1,9 @@
 import React from 'react';
 import {withRouter} from 'next/router';
-
 import Ingredient from "../models/Ingredient";
 import IngredientCollection from "../models/IngredientCollection";
-
 import IngredientSelection from "../components/IngredientSelection";
-
+import '../static/default.css';
 
 const IngredientSelectPage = withRouter(props => {
     console.log(props);
