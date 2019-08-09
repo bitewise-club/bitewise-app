@@ -5,6 +5,9 @@ class Ingredient {
         this.confidence = parseFloat(confidence);
         this.price = parseFloat(price);
         this.selected = false;
+
+        this.productImage = undefined;
+        this.productName = undefined;
     }
 
     toggleSelect() {
@@ -29,6 +32,10 @@ class Ingredient {
 
     isSelected() {
         return this.selected;
+    }
+
+    updateWithProductInformation(productObject) {
+
     }
 
     toString() {

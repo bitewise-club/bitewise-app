@@ -25,7 +25,10 @@ class IngredientCheckbox extends React.Component {
                 <Card className={this.props.styles.card}>
                     <Checkbox
                         checked={this.state.checked}
-                        onChange={this.handleChange}
+                        onChange={(e) => {
+                            this.handleChange(e);
+                            this.props.onChange(this.props.ingredient);
+                        }}
                         color="primary"
                         inputProps={{
                             'aria-label': 'secondary checkbox',
