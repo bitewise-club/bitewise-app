@@ -51,9 +51,9 @@ class IngredientsView extends React.Component {
 
     render() {
         return (<div>
-                <FileUpload onSubmit={this.getIngredients} />
+            <FileUpload onSubmit={this.getIngredients} />
             {/* TODO: Add loading icon while ingredients are being fetched */}
-                {/*<IngredientsList ingredients={this.state.ingredients} />*/}
+            {/*<IngredientsList ingredients={this.state.ingredients} />*/}
             <IngredientSelection ingredientCollection={this.state.ingredients} />
         </div>);
     }
