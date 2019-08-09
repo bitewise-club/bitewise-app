@@ -14,7 +14,6 @@ function IngredientSelection(props) {
         .getShown()
         .map((ingredient, index) => {
             return (
-
                 <span key={index}>
                         <Card className={styles.card}>
                           <CardContent>
@@ -29,9 +28,7 @@ function IngredientSelection(props) {
                             </CardActions>
                           </CardContent>
                         </Card>
-
                 </span>);
-
         });
 
     return (
