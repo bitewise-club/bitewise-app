@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "next build",
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -24,19 +28,23 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.19.0",
     "clarifai": "^2.9.0",
-    "dotenv": "^8.0.0",
     "firebase": "^6.3.4",
     "isomorphic-unfetch": "^3.0.0",
-    "jquery": "^3.4.1",
     "koa": "^2.7.0",
     "koa-session": "^5.12.2",
     "next": "^9.0.3",
     "react": "^16.8.6",
-    "react-circular-progressbar": "^2.0.1",
     "react-dom": "^16.8.6",
-    "react-html5-camera-photo": "^1.4.3",
-    "react-spinner-material": "^1.1.2",
+    "snyk": "^1.213.0",
     "webpack": "^4.39.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "react-test-renderer": "^16.8.6"
   }
 }
