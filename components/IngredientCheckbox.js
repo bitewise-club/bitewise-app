@@ -31,9 +31,6 @@ class IngredientCheckbox extends React.Component {
                             'aria-label': 'secondary checkbox',
                         }}
                     />
-                    <Typography paragraph className={this.props.styles.p}>
-                        {this.props.ingredient.getName()}
-                    </Typography>
                 </Card>
             </Grid>
         );

@@ -40,4 +40,10 @@ export const useStyles = makeStyles(theme => ({
             fontSize: "xx-large"
         },
     },
+    card: {
+        minWidth: 275,
+    },
+    title: {
+        fontSize: 14,
+    },
 }));

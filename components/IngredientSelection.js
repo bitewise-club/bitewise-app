@@ -1,9 +1,7 @@
 import React from 'react';
-import {Grid, Paper, Checkbox, Card, Typography, makeStyles} from '@material-ui/core';
+import {Card, CardActions, CardContent, Grid, Typography} from '@material-ui/core';
 import {useStyles} from './MaterialUIStyles';
 import IngredientCheckbox from "./IngredientCheckbox";
-import IngredientCollection from "../models/IngredientCollection";
-import Ingredient from "../models/Ingredient";
 
 
 function IngredientSelection(props) {
@@ -16,7 +14,16 @@ function IngredientSelection(props) {
         .map((ingredient, index) => {
             return (
                 <span key={index}>
-                    <IngredientCheckbox ingredient={ingredient} styles={styles} />
+                    <Card className={styles.card}>
+                      <CardContent>
+                        <CardActions>
+                            <IngredientCheckbox ingredient={ingredient} styles={styles}/>
+                        </CardActions>
+                        <Typography className={styles.title} color="textSecondary" gutterBottom>
+                            {ingredient.getName()}
+                        </Typography>
+                      </CardContent>
+                    </Card>
                 </span>);
         });
 
@@ -27,7 +34,8 @@ function IngredientSelection(props) {
                 <button onClick={() => {
                     props.ingredientCollection.showMore();
                     setCount(props.ingredientCollection.visibleSize());
-                }}>Show More</button>
+                }}>Show More
+                </button>
             </Grid>
         </Grid>
     );
