@@ -6,9 +6,9 @@ import * as firebase from "./index";
 const MainPage = props => {
     return (
         <div>
-            <div class="banner">
+            <div className="banner">
                 BiteWise
-                <img class="logo" height={"50px"} align={"center"} src="../static/logo.png" />
+                <img className="logo" height={"50px"} align={"center"} src="../static/logo.png" />
             </div>
             <IngredientsView app={props.app} />
 
