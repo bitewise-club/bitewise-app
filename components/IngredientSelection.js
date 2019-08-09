@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardActions, CardContent, Grid, Typography} from '@material-ui/core';
+import {Card, CardActions, CardContent, Fade, Grid, Typography} from '@material-ui/core';
 import {useStyles} from './MaterialUIStyles';
 import IngredientCheckbox from "./IngredientCheckbox";
 import './fileupload.css';
@@ -8,6 +8,7 @@ import PriceTotalView from "./PriceTotalView";
 
 function IngredientSelection(props) {
     const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
+    const [loading, setLoading] = React.useState(true);
     const [updates, setUpdates] = React.useState(0);
 
     let styles = useStyles();
@@ -55,7 +56,10 @@ function IngredientSelection(props) {
         <div>
             <AppBar/>
             <h1 className="ingredientHeader">Select your ingredients.</h1>
-            <Grid container spacing={3} className={styles.grid}>
+            <Fade in={loading}>
+                <div className="loader2" onLoad={setTimeout(() => setLoading(false), 5000)}/>
+            </Fade>
+            <Grid container spacing={3} className={styles.grid} style={{marginTop: '25px'}}>
                 <div className="flexboxSelection">
                     {items}
                 </div>
@@ -66,7 +70,7 @@ function IngredientSelection(props) {
                         setCount(props.ingredientCollection.visibleSize());
                     }}>Show More
                     </button>
-                    <h1 className="totalCost">Total Cost: <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} /></h1>
+                    <h1 className="totalCost">Total Cost: <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} loadingFunc={setLoading}/></h1>
                 </Grid>
                 </div>
             </Grid>

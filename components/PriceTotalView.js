@@ -16,7 +16,7 @@ class PriceTotalView extends React.Component {
                     .map(ingredient => ingredient.getPrice())
                     .reduce((soFar, val) => soFar + val, 0);
                 return state;
-            })
+            });
         });
 
         this.props.listener.onUpdate = this.handleCheckboxUpdate;
