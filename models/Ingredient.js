@@ -8,7 +8,7 @@ class Ingredient {
     }
 
     toggleSelect() {
-        this.selected ^= true;
+        this.selected = !this.selected;
     }
 
     getName() {
@@ -27,8 +27,19 @@ class Ingredient {
         this.price = price;
     }
 
+    isSelected() {
+        return this.selected;
+    }
+
     toString() {
 
+    }
+
+    static fromRawObject(obj) {
+        let ingredient = new Ingredient(obj.name, obj.confidence, obj.price);
+        console.log(obj.selected);
+        ingredient.selected = obj.selected;
+        return ingredient;
     }
 }
 

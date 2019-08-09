@@ -1,5 +1,6 @@
 import Clarifai from 'clarifai';
 import Ingredient from '../../models/Ingredient';
+import IngredientCollection from '../../models/IngredientCollection';
 
 async function imageProcess(imageURL) {
     const app = new Clarifai.App({
@@ -21,7 +22,7 @@ async function imageProcess(imageURL) {
         }
     }
 
-    return ingredients.map(ingredient => new Ingredient(ingredient.name, ingredient.value));
+    return new IngredientCollection(ingredients.map(ingredient => new Ingredient(ingredient.name, ingredient.value)));
 }
 
 export default imageProcess;

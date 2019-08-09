@@ -1,12 +1,16 @@
 import React from 'react';
-import {Fade} from '@material-ui/core';
 
 import FileUpload from './FileUpload';
 import IngredientsList from './IngredientsList';
 
+import IngredientCollection from '../models/IngredientCollection';
+
 import imageProcess from './api/imageProcess';
 import CloudUploader from './api/CloudStorage';
 import priceProcess from "./api/priceProcess";
+import IngredientSelection from "./IngredientSelection";
+
+import cookies from 'js-cookie';
 
 class IngredientsView extends React.Component {
     constructor(props) {
@@ -14,13 +18,14 @@ class IngredientsView extends React.Component {
         this.state = {
             fileChosen: false,
             uploader: new CloudUploader(props.app),
-            ingredients: []
+            ingredients: new IngredientCollection([])
         };
-
         this.getIngredients = this.getIngredients.bind(this);
     }
 
     async getIngredients(file) {
+        console.log('starting upload');
+
         this.setState((state, props) => {
             state.fileChosen = true;
             return state;
@@ -40,20 +45,36 @@ class IngredientsView extends React.Component {
                     state.ingredients = ingredients;
                     return state;
                 });
+
+                // this.props.setFunc(ingredients);
+
+                // redirect
+                window.location = '/ingredientselect?ingredients='
+                    + encodeURIComponent(JSON.stringify(ingredients.getUnderlyingArray())); // TODO: Add url params
             });
         });
     }
 
     render() {
-        return (<div>
-            <Fade in={this.state.fileChosen}>
-                <FileUpload onSubmit={this.getIngredients} />
-            </Fade>
-            {/* TODO: Add loading icon while ingredients are being fetched */}
-            <Fade in={this.state.ingredients.length > 0}>
-                <IngredientsList ingredients={this.state.ingredients} />
-            </Fade>
-        </div>);
+        // return (<div>
+        //     <FileUpload onSubmit={this.getIngredients} />
+        //     {/* TODO: Add loading icon while ingredients are being fetched */}
+        //     {/*<IngredientsList ingredients={this.state.ingredients} />*/}
+        //     <IngredientSelection ingredientCollection={this.state.ingredients} />
+        // </div>);
+
+        if (!this.state.fileChosen) {
+            return (<div>
+                <FileUpload onSubmit={this.getIngredients}/>
+            </div>);
+        } else {
+            return (
+                <div>
+                    <FileUpload onSubmit={this.getIngredients}/>
+                    <div className="loader"></div>
+                </div>
+            );
+        }
     }
 }
 
