@@ -10,12 +10,6 @@ export const useStyles = makeStyles(theme => ({
         padding: theme.spacing(3),
     },
     grid: {
-        [theme.breakpoints.up('xs')]: {
-            paddingLeft: theme.spacing(0),
-        },
-        [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.spacing(30),
-        },
     },
     button: {
         marginLeft: theme.spacing(1),
