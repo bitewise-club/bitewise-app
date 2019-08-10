@@ -2,6 +2,7 @@
     font-family: Avenir;
     src: url("/static/AvenirNextLTPro-Demi.woff");
 }
+
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #68771a; /* Blue */
@@ -28,6 +29,10 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

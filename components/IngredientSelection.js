@@ -23,8 +23,8 @@ function IngredientSelection(props) {
         ingredient.setOnProductNameDefined((ingredient) => {
             ingredient.name = ingredient.productName
                 + (ingredient.getPrice() !== parseFloat('NaN')
-                ? ' ($' + (ingredient.getPrice() / 100).toString() + ')'
-                : '');
+                    ? ' ($' + (ingredient.getPrice() / 100).toString() + ')'
+                    : '');
             setUpdates(updates + 1);
         });
     });
@@ -38,9 +38,9 @@ function IngredientSelection(props) {
                           <CardContent>
                             <CardActions>
                                 <IngredientCheckbox ingredient={ingredient} styles={styles}
-                                    onChange={(ingredient) => {
-                                        listener.onUpdate(ingredient);
-                                    }}/>
+                                                    onChange={(ingredient) => {
+                                                        listener.onUpdate(ingredient);
+                                                    }}/>
                                 <Typography className={styles.title} color="textSecondary" gutterBottom>
                                     <div className="ingredientText">
                                         {ingredient.getName()}
@@ -59,19 +59,21 @@ function IngredientSelection(props) {
             <Fade in={loading}>
                 <div className="loader2" onLoad={setTimeout(() => setLoading(false), 5000)}/>
             </Fade>
-            <Grid container spacing={3} className={styles.grid} style={{marginTop: '25px'}}>
+            <Grid container spacing={3} className={styles.grid} style={{marginTop: '25px'}} component="div">
                 <div className="flexboxSelection">
                     {items}
                 </div>
                 <div className="showMore">
-                <Grid item xs={12} lg={6}>
-                    <button onClick={() => {
-                        props.ingredientCollection.showMore();
-                        setCount(props.ingredientCollection.visibleSize());
-                    }}>Show More
-                    </button>
-                    <h1 className="totalCost">Total Cost: <PriceTotalView ingredientsCollection={props.ingredientCollection} listener={listener} loadingFunc={setLoading}/></h1>
-                </Grid>
+                    <Grid item xs={12} lg={6} component="div">
+                        <button onClick={() => {
+                            props.ingredientCollection.showMore();
+                            setCount(props.ingredientCollection.visibleSize());
+                        }}>Show More
+                        </button>
+                        <h1 className="totalCost">Total Cost: <PriceTotalView
+                            ingredientsCollection={props.ingredientCollection} listener={listener}
+                            loadingFunc={setLoading}/></h1>
+                    </Grid>
                 </div>
             </Grid>
         </div>

@@ -19,12 +19,14 @@
 .none {
     display: none;
 }
+
 .flexbox {
     height: 50%;
     width: 100%;
     margin-top: 80px;
     text-align: center;
 }
+
 .flexboxSelection {
     height: 50%;
     width: 100%;
@@ -33,7 +35,7 @@
 
 .ingredientHeader {
     font-family: Snippet;
-    text-align:  center;
+    text-align: center;
 }
 
 .totalCost {
@@ -42,6 +44,7 @@
     color: #68771A;
 
 }
+
 .item {
     font-family: Snippet;
     border-radius: 5px;
@@ -65,13 +68,11 @@
     margin-bottom: 60px;
 }
 
-.ingredientText{
+.ingredientText {
     font-size: 25px;
 }
-.cardFix {
-    /*margin-left:-250px;*/
-}
+
 .showMore {
     margin-top: 30px;
-    margin-left:20px;
+    margin-left: 20px;
 }

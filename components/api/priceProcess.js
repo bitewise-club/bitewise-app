@@ -1,7 +1,5 @@
 import axios from "axios";
 
-//const SPOON_KEY = "da70221b4bfd4192922aa75c3f306071";
-//const SPOON_KEY = "e123b779a9f24070a3b93a3a3c8b7eb3";
 const SPOON_KEY = "dd6c0156e5e4464bb00fa1cac51ce954";
 const SPOON_URL = "https://api.spoonacular.com/food/";
 
@@ -16,8 +14,7 @@ async function findFirstEntryWithPrice(ingredient) {
 
         lastResponse = response;
 
-        let price = response.data["price"];
-        lastPrice = price;
+        lastPrice = response.data["price"];
 
         index++;
     }
@@ -52,7 +49,6 @@ async function priceProcess(ingredientList) {
         if (responses[index]) {
             ingredient.setPrice(responses[index]["price"]);
             ingredient.setProductName(responses[index]["title"]);
-            //ingredient.productImage = responses[index][""];
             return ingredient;
         }
     });

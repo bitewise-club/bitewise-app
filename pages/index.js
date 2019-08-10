@@ -1,24 +1,11 @@
 import React from 'react';
-import {createMuiTheme} from '@material-ui/core/styles';
-import {makeStyles} from '@material-ui/core';
 import '../static/default.css';
 import "./index.module.css";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import MainPage from './main';
-
-
-/* FIREBASE CONFIG */
-const firebaseConfig = {
-    apiKey: "AIzaSyDL_Y5nqr8d3xzKlVn4aOU8gW3e0RHzBQ0",
-    authDomain: "bitewise-app.firebaseapp.com",
-    databaseURL: "https://bitewise-app.firebaseio.com",
-    projectId: "bitewise-app",
-    storageBucket: "bitewise-app.appspot.com",
-    messagingSenderId: "1048226464109",
-    appId: "1:1048226464109:web:bdcf69e5c180fc68"
-};
+import firebaseConfig from "../components/api/firebaseConfig";
 
 /* Initialize Firebase App */
 try {
@@ -32,30 +19,6 @@ firebase.auth().signInWithEmailAndPassword('s.xifaras999@gmail.com', 'bitewiseis
     console.error("Error creating user", error);
 });
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#0096db",
-        },
-        secondary: {
-            main: "#29c609",
-        },
-    },
-    typography: {
-        fontFamily: [
-            'Avenir',
-            'Arial',
-        ].join(','),
-    },
-});
-
-const useStyles = makeStyles(theme => ({
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
-}));
-
 class Index extends React.Component {
     constructor(props) {
         super(props);
@@ -67,16 +30,13 @@ class Index extends React.Component {
     render() {
         return (<div style={{
             width: "100%",
-            height: "900px", // Don't know correct number
+            height: "900px",
             backgroundImage: "url(../static/backgroundCropped.jpg)",
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover'
-
         }}>
-
             <MainPage app={firebase.app()}/>;
-
         </div>);
     }
 }

@@ -1,7 +1,7 @@
 import {makeStyles} from "@material-ui/core";
 
 export const useStyles = makeStyles(theme => ({
-    paper:{
+    paper: {
         padding: theme.spacing(2),
     },
     toolbar: theme.mixins.toolbar,
@@ -9,8 +9,7 @@ export const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
-    grid: {
-    },
+    grid: {},
     button: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -25,12 +24,12 @@ export const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(1),
     },
     p: {
-        [theme.breakpoints.only('xs')]:{
+        [theme.breakpoints.only('xs')]: {
             fontSize: "large",
         },
     },
     maintitle: {
-        [theme.breakpoints.only('xs')]:{
+        [theme.breakpoints.only('xs')]: {
             fontSize: "xx-large"
         },
     },

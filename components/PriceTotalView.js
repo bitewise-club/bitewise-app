@@ -1,6 +1,5 @@
 import React from 'react';
 import priceProcess from './api/priceProcess';
-import {Card, Checkbox, Grid, Typography} from "@material-ui/core";
 
 class PriceTotalView extends React.Component {
     constructor(props) {
@@ -54,7 +53,7 @@ class PriceTotalView extends React.Component {
             return null;
         } else {
             return (
-                    <span>{'$' + (this.state.price / 100).toString()}</span>);
+                <span>{'$' + (this.state.price / 100).toString()}</span>);
         }
     }
 }
