@@ -8,15 +8,16 @@ import '../static/default.css';
 const IngredientSelectPage = withRouter(props => {
     console.log(props);
     return (
-        <IngredientSelection ingredientCollection={
-            new IngredientCollection(props.ingredients.map(raw => Ingredient.fromRawObject(raw)))} />
+        <IngredientSelection
+            ingredientCollection={new IngredientCollection(props.ingredients.map(raw => Ingredient.fromRawObject(raw)))}
+        />
     )
 });
 
-IngredientSelectPage.getInitialProps = function(context) {
+IngredientSelectPage.getInitialProps = function (context) {
     const {ingredients} = context.query;
 
-    let props = { ingredients: JSON.parse(decodeURIComponent(ingredients)) };
+    let props = {ingredients: JSON.parse(decodeURIComponent(ingredients))};
     console.log(props);
     return props;
 };

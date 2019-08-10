@@ -1,6 +1,5 @@
-
 class IngredientCollection {
-    constructor(ingredients, defaultThresh=0.9) {
+    constructor(ingredients, defaultThresh = 0.9) {
         this.ingredients = ingredients.sort((a, b) => {
             return b.getConfidence() - a.getConfidence();
         });
@@ -25,10 +24,8 @@ class IngredientCollection {
 
     getAllSelected() {
         let newIngredientsList = [];
-        for (let ingredient of this.ingredients)
-        {
-            if (ingredient.selected)
-            {
+        for (let ingredient of this.ingredients) {
+            if (ingredient.selected) {
                 newIngredientsList.push(ingredient)
             }
         }
@@ -57,8 +54,7 @@ class IngredientCollection {
         return this.numberToShow;
     }
 
-    thresholded()
-    {
+    thresholded() {
         let out = [];
         for (let ingredient of this.ingredients) {
             //use id to see if component is recipe or ingredient?

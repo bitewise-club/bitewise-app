@@ -13,11 +13,9 @@ async function imageProcess(imageURL) {
     // TODO: Error handle
     let response = await app.models.predict(Clarifai.FOOD_MODEL, imageURL);
 
-    if(response.rawData.outputs[0].data.hasOwnProperty("concepts"))
-    {
+    if (response.rawData.outputs[0].data.hasOwnProperty("concepts")) {
         let lst_componentsInfo = response.rawData.outputs[0].data.concepts;
-        for (let dct_componentInfo of lst_componentsInfo)
-        {
+        for (let dct_componentInfo of lst_componentsInfo) {
             ingredients.push(dct_componentInfo);
         }
     }

@@ -31,14 +31,13 @@ class IngredientsView extends React.Component {
             });
 
         await this.state.uploader.fetchDownloadUrl(file.name).then(url => {
-            console.log(url);
             imageProcess(url).then(ingredients => {
                 this.setState((state, props) => {
                     state.ingredients = ingredients;
                     return state;
                 });
                 window.location = '/ingredientselect?ingredients='
-                    + encodeURIComponent(JSON.stringify(ingredients.getUnderlyingArray())); // TODO: Add url params
+                    + encodeURIComponent(JSON.stringify(ingredients.getUnderlyingArray()));
             });
         });
     }

@@ -1,6 +1,5 @@
-
 class Ingredient {
-    constructor(name, confidence, price=undefined) {
+    constructor(name, confidence, price = undefined) {
         this.name = name;
         this.confidence = parseFloat(confidence);
         this.price = parseFloat(price);

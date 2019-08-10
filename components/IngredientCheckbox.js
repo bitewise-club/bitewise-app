@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Checkbox, Grid, Typography} from "@material-ui/core";
+import {Checkbox, Grid} from "@material-ui/core";
 import './fileupload.css';
 
 class IngredientCheckbox extends React.Component {
