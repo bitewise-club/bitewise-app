@@ -18,7 +18,6 @@ IngredientSelectPage.getInitialProps = function (context) {
     const {ingredients} = context.query;
 
     let props = {ingredients: JSON.parse(decodeURIComponent(ingredients))};
-    console.log(props);
     return props;
 };
 

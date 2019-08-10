@@ -59,12 +59,12 @@ function IngredientSelection(props) {
             <Fade in={loading}>
                 <div className="loader2" onLoad={setTimeout(() => setLoading(false), 5000)}/>
             </Fade>
-            <Grid container spacing={3} className={styles.grid} style={{marginTop: '25px'}}>
+            <Grid container spacing={3} className={styles.grid} style={{marginTop: '25px'}} component="div">
                 <div className="flexboxSelection">
                     {items}
                 </div>
                 <div className="showMore">
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={6} component="div">
                         <button onClick={() => {
                             props.ingredientCollection.showMore();
                             setCount(props.ingredientCollection.visibleSize());
