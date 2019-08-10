@@ -1,6 +1,6 @@
 # Bitewise.club
 
-#```Winning submission @ Capital One SWE Summit Hackathon```
+# `Winning submission @ Capital One SWE Summit Hackathon`
 
 ![](https://travis-ci.org/joshua-yan/bettercoolertabler.svg?branch=master)
 
