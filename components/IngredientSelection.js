@@ -5,11 +5,15 @@ import IngredientCheckbox from "./IngredientCheckbox";
 import './fileupload.css';
 import AppBar from "./AppBar";
 import PriceTotalView from "./PriceTotalView";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 
 function IngredientSelection(props) {
     const [count, setCount] = React.useState(props.ingredientCollection.visibleSize());
     const [loading, setLoading] = React.useState(true);
     const [updates, setUpdates] = React.useState(0);
+
+    let db = firebase.app().firestore();
 
     let styles = useStyles();
 
@@ -72,7 +76,7 @@ function IngredientSelection(props) {
                         </button>
                         <h1 className="totalCost">Total Cost: <PriceTotalView
                             ingredientsCollection={props.ingredientCollection} listener={listener}
-                            loadingFunc={setLoading}/></h1>
+                            loadingFunc={setLoading} db={db} /></h1>
                     </Grid>
                 </div>
             </Grid>

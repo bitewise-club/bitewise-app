@@ -11,7 +11,7 @@ class IngredientsView extends React.Component {
         this.state = {
             fileChosen: false,
             uploader: new CloudUploader(props.app),
-            ingredients: new IngredientCollection([])
+            ingredients: new IngredientCollection([]),
         };
         this.getIngredients = this.getIngredients.bind(this);
     }

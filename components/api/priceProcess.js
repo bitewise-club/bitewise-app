@@ -28,7 +28,25 @@ async function findFirstEntryWithPrice(ingredient) {
     }
 }
 
-async function priceProcess(ingredientList) {
+async function priceProcess(ingredientList, db = null) {
+    console.log(db);
+    // First, attempt to get price data from FireStore
+    if (db !== null) {
+        let promises = ingredientList.map(async (ingredient, index) => {
+            let doc = await db.collection("foods").doc(ingredient.getName()).get();
+            if (doc.exists) {
+                ingredient.setPrice(doc.data().price);
+                ingredient.setProductName(doc.data().productName);
+                ingredientList.splice(index, 1);
+                return true;
+            }
+            return false;
+        });
+
+        await Promise.all(promises);
+    }
+
+    // Now that all cached entries have been acquired, get the rest
     let ingredientNames = ingredientList.map(ingredient => ingredient.getName());
 
     let idResponse = (await axios.post(SPOON_URL + "ingredients/map?apiKey=" + SPOON_KEY, {
@@ -47,6 +65,12 @@ async function priceProcess(ingredientList) {
 
     return ingredientList.map((ingredient, index) => {
         if (responses[index]) {
+            // Create/update document in the database
+            db.collection("foods").doc(ingredient.getName()).set({
+                price: responses[index]["price"],
+                productName: responses[index]["title"]
+            });
+
             ingredient.setPrice(responses[index]["price"]);
             ingredient.setProductName(responses[index]["title"]);
             return ingredient;
