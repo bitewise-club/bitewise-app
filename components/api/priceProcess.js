@@ -38,18 +38,22 @@ async function priceProcess(ingredientList, db = null) {
     console.log(db);
     // First, attempt to get price data from FireStore
     if (db !== null) {
+        let toDelete = [];
+
         let promises = ingredientList.map(async (ingredient, index) => {
             let doc = await db.collection("foods").doc(ingredient.getName()).get();
             if (doc.exists) {
                 ingredient.setPrice(doc.data().price);
                 ingredient.setProductName(doc.data().productName);
-                ingredientList.splice(index, 1);
+                toDelete.push(index);
                 return true;
             }
             return false;
         });
 
         await Promise.all(promises);
+
+        toDelete.forEach(index => ingredientList.splice(index, 1));
     }
 
     // Now that all cached entries have been acquired, get the rest
