@@ -3,7 +3,7 @@ import axios from "axios";
 const SPOON_KEY = "dd6c0156e5e4464bb00fa1cac51ce954";
 const SPOON_URL = "https://api.spoonacular.com/food/";
 
-async function findFirstEntryWithPrice(ingredient) {
+async function findFirstEntryWithPrice(ingredient, collectionRef) {
     let numProducts = ingredient["products"].length;
     let lastPrice = 0;
     let index = 0;
@@ -15,6 +15,12 @@ async function findFirstEntryWithPrice(ingredient) {
         lastResponse = response;
 
         lastPrice = response.data["price"];
+
+        if (collectionRef !== null) {
+            collectionRef.doc(ingredient["products"][index]["id"].toString()).set(
+                response.data
+            );
+        }
 
         index++;
     }
@@ -55,11 +61,13 @@ async function priceProcess(ingredientList, db = null) {
     })).data;
 
     let idRequests = [];
-    for (let ingredient of idResponse) {
+    idResponse.forEach((ingredient, index) => {
         idRequests.push(
-            findFirstEntryWithPrice(ingredient)
+            findFirstEntryWithPrice(ingredient, db === null ? db : db.collection("foods")
+                .doc(ingredientNames[index])
+                .collection("products"))
         );
-    }
+    });
 
     let responses = await Promise.all(idRequests);
 
