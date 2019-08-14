@@ -25,7 +25,8 @@ function IngredientSelection(props) {
     props.ingredientCollection
         .getUnderlyingArray().forEach(ingredient => {
         ingredient.setOnProductNameDefined((ingredient) => {
-            ingredient.name = ingredient.productName
+            // TODO: instead of doing a mutation here, add a setDisplayName function to ingredient
+            ingredient.productName = ingredient.productName
                 + (ingredient.getPrice() !== parseFloat('NaN')
                     ? ' ($' + (ingredient.getPrice() / 100).toString() + ')'
                     : '');
@@ -47,7 +48,9 @@ function IngredientSelection(props) {
                                                     }}/>
                                 <Typography className={styles.title} color="textSecondary" gutterBottom>
                                     <div className="ingredientText">
-                                        {ingredient.getName()}
+                                        {ingredient.hasProductName()
+                                            ? ingredient.getProductName()
+                                            : ingredient.getName()}
                                     </div>
                                 </Typography>
                             </CardActions>

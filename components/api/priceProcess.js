@@ -53,7 +53,8 @@ async function priceProcess(ingredientList, db = null) {
 
         await Promise.all(promises);
 
-        toDelete.forEach(index => ingredientList.splice(index, 1));
+        // toDelete.forEach(index => ingredientList.splice(index, 1));
+        ingredientList = ingredientList.filter((item, index) => !toDelete.includes(index));
     }
 
     // Now that all cached entries have been acquired, get the rest
