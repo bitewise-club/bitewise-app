@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SPOON_KEY = "dd6c0156e5e4464bb00fa1cac51ce954";
+const SPOON_KEY = "165f6350c7474b21b325d532a40c0980";
 const SPOON_URL = "https://api.spoonacular.com/food/";
 
 async function findFirstEntryWithPrice(ingredient, collectionRef) {
@@ -35,11 +35,13 @@ async function findFirstEntryWithPrice(ingredient, collectionRef) {
 }
 
 async function priceProcess(ingredientList, db = null) {
-    console.log(db);
+    let ingredientListCopy = ingredientList.slice(0);
+
     // First, attempt to get price data from FireStore
     if (db !== null) {
         let toDelete = [];
 
+        // We map over ingredientList instead of the copy to obtain a reference to the original ingredient objects
         let promises = ingredientList.map(async (ingredient, index) => {
             let doc = await db.collection("foods").doc(ingredient.getName()).get();
             if (doc.exists) {
@@ -53,11 +55,14 @@ async function priceProcess(ingredientList, db = null) {
 
         await Promise.all(promises);
 
-        toDelete.forEach(index => ingredientList.splice(index, 1));
+        // toDelete should be sorted, so iterate over it in reverse order and delete:
+        for (let i = toDelete.length - 1; i >= 0; i--) {
+            ingredientListCopy.splice(toDelete[i], 1);
+        }
     }
 
     // Now that all cached entries have been acquired, get the rest
-    let ingredientNames = ingredientList.map(ingredient => ingredient.getName());
+    let ingredientNames = ingredientListCopy.map(ingredient => ingredient.getName());
 
     let idResponse = (await axios.post(SPOON_URL + "ingredients/map?apiKey=" + SPOON_KEY, {
         "ingredients": ingredientNames,
@@ -75,7 +80,7 @@ async function priceProcess(ingredientList, db = null) {
 
     let responses = await Promise.all(idRequests);
 
-    return ingredientList.map((ingredient, index) => {
+    return ingredientListCopy.map((ingredient, index) => {
         if (responses[index]) {
             // Create/update document in the database
             db.collection("foods").doc(ingredient.getName()).set({
