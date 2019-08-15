@@ -17,6 +17,14 @@ class Ingredient {
         return this.name;
     }
 
+    getProductName() {
+        return this.productName;
+    }
+
+    hasProductName() {
+        return this.productName !== undefined;
+    }
+
     getPrice() {
         return this.price;
     }

@@ -7,24 +7,24 @@ import "firebase/storage";
 import MainPage from './main';
 import firebaseConfig from "../components/api/firebaseConfig";
 
-/* Initialize Firebase App */
-try {
-    firebase.initializeApp(firebaseConfig);
-} catch {
-    // Do nothing
-}
-
-/* Authenticate development administrator. Delete this in production */
-firebase.auth().signInWithEmailAndPassword('s.xifaras999@gmail.com', 'bitewiseisgonnawin').catch(function (error) {
-    console.error("Error creating user", error);
-});
-
 class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             cameraAccess: false,
+        };
+
+        /* Initialize Firebase App */
+        try {
+            firebase.initializeApp(firebaseConfig);
+        } catch {
+            // Do nothing
         }
+
+        // Authenticate development administrator. TODO Delete this in production
+        firebase.auth().signInWithEmailAndPassword('s.xifaras999@gmail.com', 'bitewiseisgonnawin').catch(function (error) {
+            console.error("Error authenticating user", error);
+        });
     }
 
     render() {

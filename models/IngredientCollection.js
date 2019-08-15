@@ -34,7 +34,6 @@ class IngredientCollection {
     }
 
     getShown() {
-        console.log(this.numberToShow);
         return this.ingredients.slice(0, this.numberToShow);
     }
 
