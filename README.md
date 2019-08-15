@@ -2,7 +2,7 @@
 
 # `Winning submission @ Capital One SWE Summit Hackathon`
 
-![](https://travis-ci.org/joshua-yan/bettercoolertabler.svg?branch=master)
+![](https://travis-ci.org/bitewise-club/bitewise-app.svg?branch=master)
 
 ```
 -------------------------------------------------------------------------------
