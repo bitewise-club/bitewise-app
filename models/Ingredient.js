@@ -22,7 +22,7 @@ class Ingredient {
     }
 
     hasProductName() {
-        return this.productName === undefined;
+        return this.productName !== undefined;
     }
 
     getPrice() {
