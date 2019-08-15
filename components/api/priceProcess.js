@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SPOON_KEY = "dd6c0156e5e4464bb00fa1cac51ce954";
+const SPOON_KEY = "165f6350c7474b21b325d532a40c0980";
 const SPOON_URL = "https://api.spoonacular.com/food/";
 
 async function findFirstEntryWithPrice(ingredient, collectionRef) {
