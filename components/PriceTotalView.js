@@ -34,7 +34,7 @@ class PriceTotalView extends React.Component {
         console.log(ingredient);
         this.setState((state, props) => {
             console.log(this.state.price);
-            if (this.state.price !== undefined && !isNaN(ingredient.getPrice()) && ingredient.getPrice() !== parseFloat('NaN')) {
+            if (this.state.price !== undefined && !isNaN(ingredient.getPrice())) {
                 if (ingredient.isSelected()) {
                     console.log('selected', ingredient.getPrice());
                     state.price += ingredient.getPrice();
