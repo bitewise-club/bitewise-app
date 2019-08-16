@@ -22,6 +22,8 @@ class PriceTotalView extends React.Component {
         this.props.listener.onUpdate = this.handleCheckboxUpdate;
     }
 
+    // This function will be deprecated in React 17.x, so a new solution must be found if we are to use a newer version
+    //  of React, but for now it is fine.
     componentWillUpdate(nextProps, nextState, nextContext) {
         nextProps.listener.onUpdate = this.handleCheckboxUpdate;
     }
@@ -31,7 +33,6 @@ class PriceTotalView extends React.Component {
     }
 
     handleCheckboxUpdate(ingredient) {
-        console.log(ingredient);
         this.setState((state, props) => {
             console.log(this.state.price);
             if (this.state.price !== undefined && !isNaN(ingredient.getPrice())) {
@@ -44,7 +45,6 @@ class PriceTotalView extends React.Component {
                 }
             }
 
-            console.log(state.price);
             return state;
         });
     }
