@@ -21,7 +21,9 @@ class PriceTotalView extends React.Component {
         this.props.listener.onUpdate = this.handleCheckboxUpdate;
     }
 
-    componentDidUpdate(nextProps, nextState, nextContext) {
+    // This function will be deprecated in React 17.x, so a new solution must be found if we are to use a newer version
+    //  of React, but for now it is fine.
+    componentWillUpdate(nextProps, nextState, nextContext) {
         nextProps.listener.onUpdate = this.handleCheckboxUpdate;
     }
 
