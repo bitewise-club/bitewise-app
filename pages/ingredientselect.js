@@ -3,6 +3,7 @@ import {withRouter} from 'next/router';
 import Ingredient from "../models/Ingredient";
 import IngredientCollection from "../models/IngredientCollection";
 import IngredientSelection from "../components/IngredientSelection";
+import './index.module.css';
 import '../static/default.css';
 import * as firebase from "firebase/app";
 import "firebase/auth";

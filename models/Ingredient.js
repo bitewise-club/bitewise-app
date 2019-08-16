@@ -62,7 +62,6 @@ class Ingredient {
 
     static fromRawObject(obj) {
         let ingredient = new Ingredient(obj.name, obj.confidence, obj.price);
-        console.log(obj.selected);
         ingredient.selected = obj.selected;
         return ingredient;
     }
