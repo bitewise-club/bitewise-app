@@ -2,7 +2,7 @@ import axios from "axios";
 
 //const SPOON_KEY = "da70221b4bfd4192922aa75c3f306071";
 //const SPOON_KEY = "e123b779a9f24070a3b93a3a3c8b7eb3";
-const SPOON_KEY = "dd6c0156e5e4464bb00fa1cac51ce954";
+const SPOON_KEY = "165f6350c7474b21b325d532a40c0980";
 const SPOON_URL = "https://api.spoonacular.com/food/";
 
 async function findFirstEntryWithPrice(ingredient) {
