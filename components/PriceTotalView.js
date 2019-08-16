@@ -11,7 +11,6 @@ class PriceTotalView extends React.Component {
 
         this.populatePrices(props.ingredientsCollection, props.db).then(() => {
             this.setState((state, props) => {
-                let selected = props.ingredientsCollection.getAllSelected();
                 state.price = props.ingredientsCollection.getAllSelected()
                     .map(ingredient => ingredient.getPrice())
                     .reduce((soFar, val) => soFar + (isNaN(val) ? 0 : val), 0);
