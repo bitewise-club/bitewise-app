@@ -13,7 +13,7 @@ class PriceTotalView extends React.Component {
             this.setState((state, props) => {
                 state.price = props.ingredientsCollection.getAllSelected()
                     .map(ingredient => ingredient.getPrice())
-                    .reduce((soFar, val) => soFar + val, 0);
+                    .reduce((soFar, val) => soFar + (isNaN(val) ? 0 : val), 0);
                 return state;
             });
         });
@@ -21,7 +21,9 @@ class PriceTotalView extends React.Component {
         this.props.listener.onUpdate = this.handleCheckboxUpdate;
     }
 
-    componentDidUpdate(nextProps, nextState, nextContext) {
+    // This function will be deprecated in React 17.x, so a new solution must be found if we are to use a newer version
+    //  of React, but for now it is fine.
+    componentWillUpdate(nextProps, nextState, nextContext) {
         nextProps.listener.onUpdate = this.handleCheckboxUpdate;
     }
 
@@ -30,10 +32,9 @@ class PriceTotalView extends React.Component {
     }
 
     handleCheckboxUpdate(ingredient) {
-        console.log(ingredient);
         this.setState((state, props) => {
             console.log(this.state.price);
-            if (this.state.price !== undefined && ingredient.getPrice() !== parseFloat('NaN')) {
+            if (this.state.price !== undefined && !isNaN(ingredient.getPrice())) {
                 if (ingredient.isSelected()) {
                     console.log('selected', ingredient.getPrice());
                     state.price += ingredient.getPrice();
@@ -43,7 +44,6 @@ class PriceTotalView extends React.Component {
                 }
             }
 
-            console.log(state.price);
             return state;
         });
     }

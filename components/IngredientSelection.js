@@ -4,6 +4,7 @@ import {useStyles} from './MaterialUIStyles';
 import IngredientCheckbox from "./IngredientCheckbox";
 import './fileupload.css';
 import AppBar from "./AppBar";
+import capitalize from "./util/capitalize";
 import PriceTotalView from "./PriceTotalView";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
@@ -50,7 +51,7 @@ function IngredientSelection(props) {
                                     <div className="ingredientText">
                                         {ingredient.hasProductName()
                                             ? ingredient.getProductName()
-                                            : ingredient.getName()}
+                                            : capitalize(ingredient.getName())}
                                     </div>
                                 </Typography>
                             </CardActions>
@@ -64,7 +65,7 @@ function IngredientSelection(props) {
             <AppBar/>
             <h1 className="ingredientHeader">Select your ingredients.</h1>
             <Fade in={loading}>
-                <div className="loader2" onLoad={setTimeout(() => setLoading(false), 5000)}/>
+                <div className="loader2" onLoad={timeoutLoad()}/>
             </Fade>
             <Grid container spacing={3} className={styles.grid} style={{marginTop: '25px'}} component="div">
                 <div className="flexboxSelection">
@@ -85,6 +86,10 @@ function IngredientSelection(props) {
             </Grid>
         </div>
     );
+
+    function timeoutLoad(){
+        setTimeout(() => setLoading(false), 5000);
+    }
 }
 
 export default IngredientSelection;

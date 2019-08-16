@@ -26,8 +26,6 @@ async function findFirstEntryWithPrice(ingredient, collectionRef) {
     }
 
     if (lastResponse) {
-        console.log(lastResponse.data);
-
         return lastResponse.data;
     } else {
         return Promise.resolve(undefined);
@@ -55,8 +53,7 @@ async function priceProcess(ingredientList, db = null) {
 
         await Promise.all(promises);
 
-        console.log(toDelete)
-        // toDelete should be sorted, so iterate over it in reverse order and delete:
+        // toDelete **is** sorted, so iterate over it in reverse order and delete:
         for (let i = toDelete.length - 1; i >= 0; i--) {
             ingredientListCopy.splice(toDelete[i], 1);
         }
