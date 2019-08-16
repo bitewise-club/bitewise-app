@@ -4,8 +4,23 @@ import Ingredient from "../models/Ingredient";
 import IngredientCollection from "../models/IngredientCollection";
 import IngredientSelection from "../components/IngredientSelection";
 import '../static/default.css';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from '../components/api/firebaseConfig';
 
 const IngredientSelectPage = withRouter(props => {
+    /* Initialize Firebase App */
+    try {
+        firebase.initializeApp(firebaseConfig);
+    } catch {
+        // Do nothing
+    }
+
+    /* Authenticate development administrator. Delete this in production */
+    firebase.auth().signInWithEmailAndPassword('s.xifaras999@gmail.com', 'bitewiseisgonnawin').catch(function (error) {
+        console.error("Error creating user", error);
+    });
+
     console.log(props);
     return (
         <IngredientSelection

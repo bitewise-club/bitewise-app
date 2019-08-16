@@ -52,6 +52,10 @@ class Ingredient {
 
     }
 
+    hasProductName(){
+        return this.productName !== undefined;
+    }
+
     static fromRawObject(obj) {
         let ingredient = new Ingredient(obj.name, obj.confidence, obj.price);
         console.log(obj.selected);

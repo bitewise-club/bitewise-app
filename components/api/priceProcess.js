@@ -28,8 +28,28 @@ async function findFirstEntryWithPrice(ingredient) {
     }
 }
 
-async function priceProcess(ingredientList) {
-    let ingredientNames = ingredientList.map(ingredient => ingredient.getName());
+async function priceProcess(ingredientList, db=null) {
+    let ingredientsListCopy = ingredientList.slice(0);
+    if(db != null){
+        let toDelete = [];
+
+        let promises = ingredientList.map(async (ingredient, index) => {
+            let doc = await db.collection("foods").doc(ingredient.getName()).get();
+            if(doc.exists){
+                ingredient.setPrice(doc.data().price);
+                ingredient.setProductName(doc.data().productName);
+                toDelete.push(index);
+                return true;
+            }
+            return false;
+        })
+        await Promise.all(promises);
+
+        for(let i = toDelete.length - 1; i >= 0; i--){
+            ingredientsListCopy.splice(toDelete[i], 1);
+        }
+    }
+    let ingredientNames = ingredientsListCopy.map(ingredient => ingredient.getName());
 
     let idResponse = (await axios.post(SPOON_URL + "ingredients/map?apiKey=" + SPOON_KEY, {
         "ingredients": ingredientNames,
@@ -45,8 +65,13 @@ async function priceProcess(ingredientList) {
 
     let responses = await Promise.all(idRequests);
 
-    return ingredientList.map((ingredient, index) => {
+    return ingredientsListCopy.map((ingredient, index) => {
         if (responses[index]) {
+            db.collection("foods").doc(ingredient.getName()).set({
+                price: responses[index]["price"],
+                productName: responses[index]["title"]
+            })
+
             ingredient.setPrice(responses[index]["price"]);
             ingredient.setProductName(responses[index]["title"]);
             return ingredient;

@@ -9,7 +9,7 @@ class PriceTotalView extends React.Component {
         };
         this.handleCheckboxUpdate = this.handleCheckboxUpdate.bind(this);
 
-        this.populatePrices(props.ingredientsCollection).then(() => {
+        this.populatePrices(props.ingredientsCollection, props.db).then(() => {
             this.setState((state, props) => {
                 state.price = props.ingredientsCollection.getAllSelected()
                     .map(ingredient => ingredient.getPrice())
@@ -25,8 +25,8 @@ class PriceTotalView extends React.Component {
         nextProps.listener.onUpdate = this.handleCheckboxUpdate;
     }
 
-    async populatePrices(ingredientsCollection) {
-        return await priceProcess(ingredientsCollection.getUnderlyingArray());
+    async populatePrices(ingredientsCollection, db) {
+        return await priceProcess(ingredientsCollection.getUnderlyingArray(), db);
     }
 
     handleCheckboxUpdate(ingredient) {
